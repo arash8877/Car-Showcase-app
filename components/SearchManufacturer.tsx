@@ -4,10 +4,27 @@ import { useState, Fragment } from "react";
 import { SearchManufacturerProps } from "@/types";
 import Image from "next/image";
 import { manufacturers } from "@/constants";
-import { Combobox, Transition, ComboboxButton, ComboboxInput, ComboboxOptions } from "@headlessui/react";
+import {
+  Combobox,
+  Transition,
+  ComboboxButton,
+  ComboboxInput,
+  ComboboxOptions,
+  ComboboxOption,
+} from "@headlessui/react";
 
 const SearchManufacturer = ({ manufacturer, setManufacturer }: SearchManufacturerProps) => {
   const [query, setQuery] = useState("");
+
+  const filteredManufacturers =
+    query === ""
+      ? manufacturers
+      : manufacturers.filter((item) =>
+          item
+            .toLocaleLowerCase()
+            .replace(/\s+/g, "")
+            .includes(query.toLowerCase().replace(/\s+/g, ""))
+        );
 
   return (
     <div className="search-manufacturer">
@@ -30,7 +47,15 @@ const SearchManufacturer = ({ manufacturer, setManufacturer }: SearchManufacture
             afterLeave={() => setQuery("")}
           >
             <ComboboxOptions>
-
+              {filteredManufacturers.map((item) => (
+                <ComboboxOption
+                  key={item}
+                  className="relative search-manufacturer__option data-[focus]:bg-primary-blue data-[focus]:text-white text-gray-900"
+                  value={item}
+                >
+                  {item}
+                </ComboboxOption>
+              ))}
             </ComboboxOptions>
           </Transition>
         </div>
