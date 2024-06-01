@@ -1,10 +1,11 @@
+//------------------------------fetch Cars------------------------------------
 export async function fetchCars() {
   const headers = {
     "x-rapidapi-key": "62ef19548fmshb73cf0b78e954cbp1cd2d9jsn1ec7e80768b9",
     "x-rapidapi-host": "cars-by-api-ninjas.p.rapidapi.com",
   };
 
-  const response = await fetch("https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=corolla", {
+  const response = await fetch("https://cars-by-api-ninjas.p.rapidapi.com/v1/cars?model=carrera", {
     headers: headers,
   });
 
@@ -13,7 +14,7 @@ export async function fetchCars() {
   return result;
 }
 
-//------------------------------------------------------------------
+//------------------------------calculateCarRent------------------------------------
 export const calculateCarRent = (city_mpg: number, year: number) => {
   const basePricePerDay = 50; // Base rental price per day in dollars
   const mileageFactor = 0.1; // Additional rate per mile driven
