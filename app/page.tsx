@@ -1,4 +1,4 @@
-import { Hero, CustomFilter, SearchBar, CarCard } from "@/components";
+import { Hero, CustomFilter, SearchBar, CarCard, ShowMore } from "@/components";
 import { fetchCars } from "@/utils";
 import Image from "next/image";
 import { HomeProps } from "@/types";
