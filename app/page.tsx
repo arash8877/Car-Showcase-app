@@ -25,8 +25,8 @@ export default async function Home({ searchParams }: HomeProps) {
         <div className="home__filters">
           <SearchBar />
           <div className="home__filter-container">
-            <CustomFilter title='fuel' options={fuels}/>
-            <CustomFilter title= 'year' options={yearsOfProduction}/>
+            <CustomFilter title="fuel" options={fuels} />
+            <CustomFilter title="year" options={yearsOfProduction} />
           </div>
         </div>
 
@@ -37,10 +37,15 @@ export default async function Home({ searchParams }: HomeProps) {
                 <CarCard car={car} />
               ))}
             </div>
+
+            <ShowMore
+              pageNumber={(searchParams.limit || 10) / 10}
+              isNext={(searchParams.limit || 10) > allCars.length}
+            />
           </section>
         ) : (
           <div className="home__error-container">
-            <h2 className="text-black text-x1">Oops! no results.</h2>
+            <h2 className="text-black text-xl font-bold">Oops, no results</h2>
             <p>{allCars?.message}</p>
           </div>
         )}

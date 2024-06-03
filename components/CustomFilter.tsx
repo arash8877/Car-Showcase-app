@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, Fragment } from "react";
+import { Fragment, useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import {
   Listbox,
   ListboxButton,
@@ -10,7 +10,8 @@ import {
   ListboxOptions,
   Transition,
 } from "@headlessui/react";
-import { CustomFilterProps } from "@/types";
+
+import { CustomFilterProps } from "@/types"; 
 import { updateSearchParams } from "@/utils"; 
 
 export default function CustomFilter({ title, options }: CustomFilterProps) {
@@ -57,11 +58,9 @@ export default function CustomFilter({ title, options }: CustomFilterProps) {
               {options.map((option) => (
                 <ListboxOption
                   key={option.title}
-                  className={({ active }) =>
-                    `relative cursor-default select-none py-2 px-4 ${
-                      active ? "bg-primary-blue text-white" : "text-gray-900"
-                    }`
-                  }
+                
+                  className="relative cursor-pointer select-none py-2 px-4 data-[focus]:bg-primary-blue"
+
                   value={option}
                 >
                   {({ selected }) => (
